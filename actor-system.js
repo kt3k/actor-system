@@ -39,6 +39,8 @@
 
         var Actor0 = subclass(Actor, definingFunction);
 
+        Actor0.customClassName = actorName;
+
         $.registerCustomClass(actorName, function (elem) {
 
             new Actor0(elem);
@@ -57,7 +59,9 @@
      */
     $.defineRole = function (roleName, definingFunction) {
 
-        var Role0 = subclass(Role(roleName), definingFunction);
+        var Role0 = subclass(Role, definingFunction);
+
+        Role0.customClassName = roleName;
 
         $.registerCustomClass(roleName, function (elem) {
 
@@ -70,15 +74,15 @@
     };
 
 
-    var Actor = subclass(function (pt) {
+    var ReadyNotifier = subclass(function (pt) {
 
         pt.constructor = function (elem) {
 
             this.elem = elem;
 
-            this.elem.data('__actor', this);
+            var customClassName = this.constructor.customClassName;
 
-            this.init();
+            //this.elem.customClassReady(customClassName, this.init());
 
         };
 
@@ -87,44 +91,32 @@
     });
 
 
-    var roleClassCache = {};
+    var Actor = subclass(ReadyNotifier, function (pt, parent) {
 
-    var Role = function (roleName) {
+        pt.constructor = function (elem) {
 
-        if (typeof roleName !== 'string') {
+            elem.data('__actor', this);
 
-            throw new Error('The role name has to be a string');
+            parent.constructor.call(this, elem);
 
-        }
+        };
 
-        if (typeof roleClassCache[roleName] !== 'undefined') {
+    });
 
-            // return from cache
-            return roleClassCache[roleName];
 
-        }
+    var Role = subclass(ReadyNotifier, function (pt, parent) {
 
-        var Role0 = subclass(function (pt) {
+        pt.constructor = function (elem) {
 
-            pt.constructor = function (elem) {
+            var roleName = this.constructor.customClassName;
 
-                this.elem = elem;
+            elem.data('__role:' + roleName, this);
 
-                this.elem.data('__role:' + roleName, this);
+            parent.constructor.call(this, elem);
 
-                this.init();
+        };
 
-            };
-
-            pt.init = function () {};
-
-        });
-
-        roleClassCache[roleName] = Role0;
-
-        return Role0;
-
-    };
+    });
 
     /**
      * Gets an actor set on the element.

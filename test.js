@@ -53,10 +53,8 @@
 
             setTimeout(function () {
 
-                var Role0 = $.defineRole.Role('role0');
-
                 expect($dom.getRole('role0')).to.exist;
-                expect($dom.getRole('role0')).to.be.instanceof(Role0);
+                expect($dom.getRole('role0')).to.be.instanceof(Role);
                 expect($dom.getRole('role0').foo()).to.equal('bar');
 
                 done()
