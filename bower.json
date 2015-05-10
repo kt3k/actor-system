@@ -1,0 +1,27 @@
+{
+  "name": "actor-system",
+  "main": "actor-system.js",
+  "version": "0.1.0",
+  "description": "The actor system on dom",
+  "keywords": [
+    "mvc",
+    "component",
+    "actor"
+  ],
+  "authors": [
+    "Yoshiya Hinosawa"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "subclassjs": "~1.1.1",
+    "custom-class": "~2.0.0"
+  }
+}

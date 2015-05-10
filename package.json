@@ -1,0 +1,25 @@
+{
+  "name": "actor-system",
+  "version": "0.1.0",
+  "description": "The actor system on dom",
+  "main": "actor-system.js",
+  "scripts": {
+    "test": "karma start karma.conf.js --single-run"
+  },
+  "keywords": [
+    "mvc",
+    "actor",
+    "component"
+  ],
+  "author": "Yoshiya Hinosawa",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "karma": "^0.12.31",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.9",
+    "karma-mocha": "^0.1.10",
+    "mocha": "^2.2.4",
+    "which": "^1.0.9"
+  }
+}
