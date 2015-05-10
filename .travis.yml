@@ -5,5 +5,8 @@ before_install:
 - bower install
 - npm install -g karma-cli
 
+script:
+- npm run ci
+
 after_success:
 - npm run coveralls

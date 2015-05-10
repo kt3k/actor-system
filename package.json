@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "description": "The actor system on dom",
   "main": "actor-system.js",
+  "repository": "https://github.com/kt3k/actor-system.git",
   "scripts": {
     "test": "karma start karma.conf.js --single-run",
+    "ci": "karma start karma.conf.js --single-run --browsers PhantomJS",
     "coverage": "karma start karma.conf.js --single-run --reporters progress,coverage",
-    "coveralls": "karma start karma.conf.js --single-run --reporters progress,coverage,coveralls"
+    "coveralls": "karma start karma.conf.js --single-run --browsers PhantomJS --reporters progress,coverage,coveralls"
   },
   "keywords": [
     "mvc",
@@ -23,6 +25,7 @@
     "karma-coverage": "^0.3.1",
     "karma-coveralls": "^0.1.5",
     "karma-mocha": "^0.1.10",
+    "karma-phantomjs-launcher": "^0.1.4",
     "mocha": "^2.2.4",
     "which": "^1.0.9"
   }
