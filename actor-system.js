@@ -17,6 +17,12 @@
 
     }
 
+    if (typeof $.registerCustomClass === 'undefined') {
+
+        throw new Error('$.registerCustomClass not found. ' + NAME + ' depends on custom-class.js (https://github.com/kt3k/custom-class).');
+
+    }
+
     if (typeof subclass === 'undefined') {
 
         throw new Error('subclass not found. ' + NAME + ' depends on subclass.js ( https://github.com/kt3k/subclass ).');
