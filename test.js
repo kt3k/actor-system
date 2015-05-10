@@ -39,7 +39,7 @@
 
     describe('$.defineRole', function () {
 
-        it('defines a role of the given name', function () {
+        it('defines a role of the given name', function (done) {
 
             $.defineRole('role0', function (pt) {
 
@@ -57,9 +57,22 @@
 
                 expect($dom.getRole('role0')).to.exist;
                 expect($dom.getRole('role0')).to.be.instanceof(Role0);
-                expect($dom.getRole('foo')).to.equal('bar');;
+                expect($dom.getRole('role0').foo()).to.equal('bar');
+
+                done()
 
             });
+
+        });
+
+
+        it('throws error when the given name is not a string', function () {
+
+            expect(function () {
+
+                $.defineRole(123, function () {});
+
+            }).to.throw(Error);
 
         });
 
