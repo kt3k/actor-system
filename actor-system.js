@@ -29,6 +29,28 @@
 
     }
 
+
+    /**
+     * @private
+     * @param {jQuery} $
+     * @param {String} className
+     * @param {Function} DefiningClass
+     * @return {Function}
+     */
+    var assignClassComponent = function ($, className, DefiningClass) {
+
+        DefiningClass.classComponentName = className;
+
+        $.registerClassComponent(className, function (elem) {
+
+            new DefiningClass(elem);
+
+        });
+
+        return DefiningClass;
+
+    };
+
     /**
      * Defines an actor
      *
@@ -39,15 +61,7 @@
 
         var Actor0 = subclass(Actor, definingFunction);
 
-        Actor0.classComponentName = actorName;
-
-        $.registerClassComponent(actorName, function (elem) {
-
-            new Actor0(elem);
-
-        });
-
-        return Actor0;
+        return assignClassComponent($, actorName, Actor0);
 
     };
 
@@ -61,15 +75,7 @@
 
         var Role0 = subclass(Role, definingFunction);
 
-        Role0.classComponentName = roleName;
-
-        $.registerClassComponent(roleName, function (elem) {
-
-            new Role0(elem);
-
-        });
-
-        return Role0;
+        return assignClassComponent($, roleName, Role0);
 
     };
 
@@ -82,7 +88,7 @@
 
             var classComponentName = this.constructor.classComponentName;
 
-            //this.elem.classComponentReady(classComponentName, this.init());
+            this.elem.classComponentReady(classComponentName, this.init());
 
         };
 
