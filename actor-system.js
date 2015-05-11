@@ -2,7 +2,7 @@
  * actor-system.js v0.1.1
  * author: Yoshiya Hinosawa ( https://github.com/kt3k )
  * license: MIT
- * depends on jQuery, custom-class.js and subclass.js
+ * depends on jQuery, class-component.js and subclass.js
  */
 
 
@@ -17,9 +17,9 @@
 
     }
 
-    if (typeof $.registerCustomClass === 'undefined') {
+    if (typeof $.registerClassComponent === 'undefined') {
 
-        throw new Error('$.registerCustomClass not found. ' + NAME + ' depends on custom-class.js (https://github.com/kt3k/custom-class).');
+        throw new Error('$.registerClassComponent not found. ' + NAME + ' depends on class-component.js (https://github.com/kt3k/class-component).');
 
     }
 
@@ -39,9 +39,9 @@
 
         var Actor0 = subclass(Actor, definingFunction);
 
-        Actor0.customClassName = actorName;
+        Actor0.classComponentName = actorName;
 
-        $.registerCustomClass(actorName, function (elem) {
+        $.registerClassComponent(actorName, function (elem) {
 
             new Actor0(elem);
 
@@ -61,9 +61,9 @@
 
         var Role0 = subclass(Role, definingFunction);
 
-        Role0.customClassName = roleName;
+        Role0.classComponentName = roleName;
 
-        $.registerCustomClass(roleName, function (elem) {
+        $.registerClassComponent(roleName, function (elem) {
 
             new Role0(elem);
 
@@ -80,9 +80,9 @@
 
             this.elem = elem;
 
-            var customClassName = this.constructor.customClassName;
+            var classComponentName = this.constructor.classComponentName;
 
-            //this.elem.customClassReady(customClassName, this.init());
+            //this.elem.classComponentReady(classComponentName, this.init());
 
         };
 
@@ -108,7 +108,7 @@
 
         pt.constructor = function (elem) {
 
-            var roleName = this.constructor.customClassName;
+            var roleName = this.constructor.classComponentName;
 
             elem.data('__role:' + roleName, this);
 

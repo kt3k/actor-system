@@ -22,6 +22,6 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "subclassjs": "~1.1.1",
-    "custom-class": "~2.0.0"
+    "class-component": "~1.0.0"
   }
 }

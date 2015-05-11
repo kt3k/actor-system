@@ -17,7 +17,7 @@ module.exports = function(config) {
     files: [
       'bower_components/jquery/dist/jquery.js',
       'bower_components/subclassjs/index.js',
-      'bower_components/custom-class/custom-class.js',
+      'bower_components/class-component/class-component.js',
       'actor-system.js',
       'test.js'
     ],
