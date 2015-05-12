@@ -35,6 +35,24 @@
 
         });
 
+
+        it('returns the defining class of the actor', function () {
+
+            var Actor0 = $.defineActor(null, function (pt) {
+
+                pt.answer = function () {
+                    return 42;
+                };
+
+            });
+
+            var actor = new Actor0($('<div />'));
+
+            expect(actor).to.be.instanceof(Actor);
+            expect(actor.answer()).to.equal(42);
+
+        });
+
     });
 
     describe('$.defineRole', function () {
@@ -74,6 +92,24 @@
 
         });
 
+
+        it('returns the defining class of the role', function () {
+
+            var Role0 = $.defineRole(null, function (pt) {
+
+                pt.answer = function () {
+                    return 42;
+                };
+
+            });
+
+            var role = new Role0($('<div />'));
+
+            expect(role).to.be.instanceof(Role);
+            expect(role.answer()).to.equal(42);
+
+        });
+
     });
 
     describe('$.fn.getActor', function () {
@@ -100,6 +136,17 @@
 
             expect($dom.getRole('abc')).to.equal(role);
             expect($dom.getRole('def')).to.not.exist;
+
+        });
+
+    });
+
+
+    describe('$.assignClassComponent', function () {
+
+        it('assign class implemntation as class component', function () {
+
+            // TODO: assert
 
         });
 

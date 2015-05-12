@@ -37,7 +37,7 @@
      * @param {Function} DefiningClass
      * @return {Function}
      */
-    var assignClassComponent = function ($, className, DefiningClass) {
+    $.assignClassComponent = function (className, DefiningClass) {
 
         DefiningClass.classComponentName = className;
 
@@ -52,30 +52,57 @@
     };
 
     /**
-     * Defines an actor
+     * Defines and registers an actor
      *
      * @param {String} actorName
      * @param {Function} definingFunction
      */
     $.defineActor = function (actorName, definingFunction) {
 
+        if (definingFunction == null && typeof actorName === 'function') {
+
+            definingFunction = actorName;
+            actorName = null;
+
+        }
+
         var Actor0 = subclass(Actor, definingFunction);
 
-        return assignClassComponent($, actorName, Actor0);
+        if (actorName) {
+
+            $.assignClassComponent(actorName, Actor0);
+
+        }
+
+        return Actor0;
 
     };
 
 
     /**
+     * Defines and registers an role
      *
-     * @param {String} actorName
+     * @param {String} roleName
      * @param {Function} definingFunction
      */
     $.defineRole = function (roleName, definingFunction) {
 
+        if (definingFunction == null && typeof roleName === 'function') {
+
+            definingFunction = roleName;
+            roleName = null;
+
+        }
+
         var Role0 = subclass(Role, definingFunction);
 
-        return assignClassComponent($, roleName, Role0);
+        if (roleName) {
+
+            $.assignClassComponent(roleName, Role0);
+
+        }
+
+        return Role0;
 
     };
 
