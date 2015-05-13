@@ -32,7 +32,33 @@
 
     /**
      * @private
-     * @param {jQuery} $
+     * @param {Function} Parent The parent class
+     * @param {String} name The class component name
+     * @param {Function} defining
+     * @return {Function} The child class
+     */
+    var extendAndAssign = function (Parent, name, defining) {
+
+        if (defining == null && typeof name === 'function') {
+
+            return extendAndAssign(Parent, null, name);
+
+        }
+
+        var Child = subclass(Parent, defining);
+
+        if (name) {
+
+            $.assignClassComponent(name, Child);
+
+        }
+
+        return Child;
+
+    };
+
+
+    /**
      * @param {String} className
      * @param {Function} DefiningClass
      * @return {Function}
@@ -59,22 +85,7 @@
      */
     $.defineActor = function (actorName, definingFunction) {
 
-        if (definingFunction == null && typeof actorName === 'function') {
-
-            definingFunction = actorName;
-            actorName = null;
-
-        }
-
-        var Actor0 = subclass(Actor, definingFunction);
-
-        if (actorName) {
-
-            $.assignClassComponent(actorName, Actor0);
-
-        }
-
-        return Actor0;
+        return extendAndAssign(Actor, actorName, definingFunction);
 
     };
 
@@ -87,26 +98,14 @@
      */
     $.defineRole = function (roleName, definingFunction) {
 
-        if (definingFunction == null && typeof roleName === 'function') {
-
-            definingFunction = roleName;
-            roleName = null;
-
-        }
-
-        var Role0 = subclass(Role, definingFunction);
-
-        if (roleName) {
-
-            $.assignClassComponent(roleName, Role0);
-
-        }
-
-        return Role0;
+        return extendAndAssign(Role, roleName, definingFunction);
 
     };
 
 
+    /**
+     * ReadyNotifier is the component class which notifies the readiness of the component.
+     */
     var ReadyNotifier = subclass(function (pt) {
 
         pt.constructor = function (elem) {
@@ -124,6 +123,9 @@
     });
 
 
+    /**
+     * Actor is a component class which drives the dom as main actor. A dom is able to have only one actor.
+     */
     var Actor = subclass(ReadyNotifier, function (pt, parent) {
 
         pt.constructor = function (elem) {
@@ -137,6 +139,9 @@
     });
 
 
+    /**
+     * Role is a component class. A dom can have multiple roles on it.
+     */
     var Role = subclass(ReadyNotifier, function (pt, parent) {
 
         pt.constructor = function (elem) {
