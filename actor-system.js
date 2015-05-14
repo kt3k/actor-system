@@ -114,11 +114,11 @@
 
             var classComponentName = this.constructor.classComponentName;
 
-            this.elem.classComponentReady(classComponentName, this.init());
+            this.elem.classComponentReady(classComponentName, this.__init());
 
         };
 
-        pt.init = function () {};
+        pt.__init = function () {};
 
     });
 
