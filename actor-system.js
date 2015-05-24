@@ -11,24 +11,11 @@
 
     var NAME = 'actor-system';
 
-    if (typeof $ === 'undefined') {
-
-        throw new Error('jQuery not found. ' + NAME + ' depends on jQuery');
-
-    }
-
     if (typeof $.registerClassComponent === 'undefined') {
 
         throw new Error('$.registerClassComponent not found. ' + NAME + ' depends on class-component.js (https://github.com/kt3k/class-component).');
 
     }
-
-    if (typeof subclass === 'undefined') {
-
-        throw new Error('subclass not found. ' + NAME + ' depends on subclass.js ( https://github.com/kt3k/subclass ).');
-
-    }
-
 
     /**
      * @private
@@ -182,4 +169,4 @@
     $.defineActor.Actor = Actor;
     $.defineRole.Role = Role;
 
-}(window.jQuery, window.subclass));
+}(jQuery, subclass));
