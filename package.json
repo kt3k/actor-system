@@ -1,6 +1,6 @@
 {
   "name": "actor-system",
-  "version": "1.4.1",
+  "version": "4.0.0",
   "description": "The actor system on dom",
   "main": "actor-system.js",
   "repository": "https://github.com/kt3k/actor-system.git",
