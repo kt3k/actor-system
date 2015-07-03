@@ -4,14 +4,14 @@
 (function () {
     'use strict';
 
-    var Actor = $.defineActor.Actor;
-    var Role = $.defineRole.Role;
+    var Actor = $.CC.Actor;
+    var Role = $.CC.Role;
 
-    describe('$.defineActor', function () {
+    describe('$.CC.defineActor', function () {
 
         it('defines an actor of the given name', function (done) {
 
-            $.defineActor('actor0', function (pt) {
+            $.CC.defineActor('actor0', function (pt) {
 
                 pt.answer = function () {
                     return 42;
@@ -38,7 +38,7 @@
 
         it('returns the defining class of the actor', function () {
 
-            var Actor0 = $.defineActor(null, function (pt) {
+            var Actor0 = $.CC.defineActor(null, function (pt) {
 
                 pt.answer = function () {
                     return 42;
@@ -55,11 +55,11 @@
 
     });
 
-    describe('$.defineRole', function () {
+    describe('$.CC.defineRole', function () {
 
         it('defines a role of the given name', function (done) {
 
-            $.defineRole('role0', function (pt) {
+            $.CC.defineRole('role0', function (pt) {
 
                 pt.foo = function () { return 'bar'; };
 
@@ -86,7 +86,7 @@
 
             expect(function () {
 
-                $.defineRole(123, function () {});
+                $.CC.defineRole(123, function () {});
 
             }).to.throw(Error);
 
@@ -95,7 +95,7 @@
 
         it('returns the defining class of the role', function () {
 
-            var Role0 = $.defineRole(null, function (pt) {
+            var Role0 = $.CC.defineRole(null, function (pt) {
 
                 pt.answer = function () {
                     return 42;
@@ -142,7 +142,7 @@
     });
 
 
-    describe('$.assignClassComponent', function () {
+    describe('$.CC.assign', function () {
 
         it('assign class implemntation as class component', function () {
 

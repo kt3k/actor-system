@@ -21,6 +21,6 @@
   ],
   "dependencies": {
     "subclassjs": "^1.2.0",
-    "class-component": "^3.1.0"
+    "class-component": "^4.0.0"
   }
 }

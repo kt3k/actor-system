@@ -36,7 +36,7 @@
 
         if (name) {
 
-            $.assignClassComponent(name, Child);
+            $.CC.assign(name, Child);
 
         }
 
@@ -54,7 +54,7 @@
 
         DefiningClass.classComponentName = className;
 
-        $.registerClassComponent(className, function (elem) {
+        $.CC.register(className, function (elem) {
 
             new DefiningClass(elem);
 
@@ -63,6 +63,8 @@
         return DefiningClass;
 
     };
+
+    $.CC.assign = $.assignClassComponent;
 
     /**
      * Defines and registers an actor
@@ -76,6 +78,8 @@
 
     };
 
+    $.CC.defineActor = $.defineActor;
+
 
     /**
      * Defines and registers an role
@@ -88,6 +92,9 @@
         return extendAndAssign(Role, roleName, definingFunction);
 
     };
+
+
+    $.CC.defineRole = $.defineRole;
 
 
     /**
@@ -166,7 +173,7 @@
 
     };
 
-    $.defineActor.Actor = Actor;
-    $.defineRole.Role = Role;
+    $.CC.Actor = Actor;
+    $.CC.Role = Role;
 
 }(jQuery, subclass));
