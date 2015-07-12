@@ -11,9 +11,9 @@
 
     var NAME = 'actor-system';
 
-    if (typeof $.registerClassComponent === 'undefined') {
+    if (typeof $.CC === 'undefined') {
 
-        throw new Error('$.registerClassComponent not found. ' + NAME + ' depends on class-component.js (https://github.com/kt3k/class-component).');
+        throw new Error('$.CC is undefined. ' + NAME + ' depends on class-component.js (https://github.com/kt3k/class-component).');
 
     }
 
