@@ -23,7 +23,7 @@
      */
     $.cc.assign = function (className, DefiningClass) {
 
-        DefiningClass.classComponentName = className;
+        DefiningClass.coelementName = className;
 
         $.cc.register(className, function (elem) {
 
@@ -37,7 +37,7 @@
     /**
      * Coelement is the additional function of the dom element. A coelement is bound to the element and works together with it.
      */
-    $.cc.Coelement = $.cc.subclass(function (pt) {
+    $.cc.Coelement = $.cc.Coel  = $.cc.Co = $.cc.subclass(function (pt) {
 
         pt.constructor = function (elem) {
 
@@ -45,7 +45,7 @@
 
             // embeds coelement in the jquery object
             // to make it possible to reference coelement from the element.
-            this.elem.data('__class_component:' + this.constructor.classComponentName, this);
+            this.elem.data('__coelement:' + this.constructor.coelementName, this);
 
         };
 
@@ -60,6 +60,12 @@
         pt.constructor = function (elem) {
 
             parent.constructor.call(this, elem);
+
+            if (elem.data('__actor') != null) {
+
+                throw new Error('actor is already set: ' + elem.data('__actor').constructor.coelementName);
+
+            };
 
             elem.data('__actor', this);
 
