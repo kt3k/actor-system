@@ -1,7 +1,7 @@
 {
   "name": "actor-system",
   "main": "actor-system.js",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "The actor system on dom",
   "keywords": [
     "mvc",

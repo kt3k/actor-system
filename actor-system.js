@@ -1,5 +1,5 @@
 /**
- * actor-system.js v4.0.0
+ * actor-system.js v5.0.0
  * author: Yoshiya Hinosawa ( https://github.com/kt3k )
  * license: MIT
  * depends on jQuery and class-component.js
