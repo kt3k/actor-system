@@ -4,14 +4,14 @@
 (function () {
     'use strict';
 
-    var Actor = $.CC.Actor;
-    var Role = $.CC.Role;
+    var Actor = $.cc.Actor;
+    var Role = $.cc.Role;
 
-    describe('$.CC.defineActor', function () {
+    describe('$.cc.defineActor', function () {
 
         it('defines an actor of the given name', function (done) {
 
-            $.CC.defineActor('actor0', function (pt) {
+            $.cc.defineActor('actor0', function (pt) {
 
                 pt.answer = function () {
                     return 42;
@@ -21,7 +21,7 @@
 
             var $dom = $('<div class="actor0" />').appendTo(document.body);
 
-            $(document).trigger('init-class.actor0');
+            $.cc.init('actor0');
 
             setTimeout(function () {
 
@@ -38,7 +38,7 @@
 
         it('returns the defining class of the actor', function () {
 
-            var Actor0 = $.CC.defineActor(null, function (pt) {
+            var Actor0 = $.cc.defineActor(null, function (pt) {
 
                 pt.answer = function () {
                     return 42;
@@ -55,11 +55,11 @@
 
     });
 
-    describe('$.CC.defineRole', function () {
+    describe('$.cc.defineRole', function () {
 
         it('defines a role of the given name', function (done) {
 
-            $.CC.defineRole('role0', function (pt) {
+            $.cc.defineRole('role0', function (pt) {
 
                 pt.foo = function () { return 'bar'; };
 
@@ -67,7 +67,7 @@
 
             var $dom = $('<div class="role0" />').appendTo(document.body);
 
-            $(document).trigger('init-class.role0');
+            $.cc.init('role0');
 
             setTimeout(function () {
 
@@ -86,7 +86,7 @@
 
             expect(function () {
 
-                $.CC.defineRole(123, function () {});
+                $.cc.defineRole(123, function () {});
 
             }).to.throw(Error);
 
@@ -95,7 +95,7 @@
 
         it('returns the defining class of the role', function () {
 
-            var Role0 = $.CC.defineRole(null, function (pt) {
+            var Role0 = $.cc.defineRole(null, function (pt) {
 
                 pt.answer = function () {
                     return 42;
@@ -142,7 +142,7 @@
     });
 
 
-    describe('$.CC.assign', function () {
+    describe('$.cc.assign', function () {
 
         it('assign class implemntation as class component', function () {
 

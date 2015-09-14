@@ -2,18 +2,18 @@
  * actor-system.js v4.0.0
  * author: Yoshiya Hinosawa ( https://github.com/kt3k )
  * license: MIT
- * depends on jQuery, class-component.js and subclass.js
+ * depends on jQuery and class-component.js
  */
 
 
-(function ($, subclass) {
+(function ($) {
     'use strict';
 
     var NAME = 'actor-system';
 
-    if (typeof $.CC === 'undefined') {
+    if (typeof $.cc === 'undefined') {
 
-        throw new Error('$.CC is undefined. ' + NAME + ' depends on class-component.js (https://github.com/kt3k/class-component).');
+        throw new Error('$.cc is undefined. ' + NAME + ' depends on class-component.js (https://github.com/kt3k/class-component).');
 
     }
 
@@ -32,11 +32,11 @@
 
         }
 
-        var Child = subclass(Parent, defining);
+        var Child = $.cc.subclass(Parent, defining);
 
         if (name) {
 
-            $.CC.assign(name, Child);
+            $.cc.assign(name, Child);
 
         }
 
@@ -50,11 +50,11 @@
      * @param {Function} DefiningClass
      * @return {Function}
      */
-    $.assignClassComponent = function (className, DefiningClass) {
+    $.cc.assign = function (className, DefiningClass) {
 
         DefiningClass.classComponentName = className;
 
-        $.CC.register(className, function (elem) {
+        $.cc.register(className, function (elem) {
 
             new DefiningClass(elem);
 
@@ -64,22 +64,17 @@
 
     };
 
-    $.CC.assign = $.assignClassComponent;
-
     /**
      * Defines and registers an actor
      *
      * @param {String} actorName
      * @param {Function} definingFunction
      */
-    $.defineActor = function (actorName, definingFunction) {
+    $.cc.defineActor = function (actorName, definingFunction) {
 
-        return extendAndAssign(Actor, actorName, definingFunction);
+        return extendAndAssign($.cc.Actor, actorName, definingFunction);
 
     };
-
-    $.CC.defineActor = $.defineActor;
-
 
     /**
      * Defines and registers an role
@@ -87,32 +82,22 @@
      * @param {String} roleName
      * @param {Function} definingFunction
      */
-    $.defineRole = function (roleName, definingFunction) {
+    $.cc.defineRole = function (roleName, definingFunction) {
 
-        return extendAndAssign(Role, roleName, definingFunction);
+        return extendAndAssign($.cc.Role, roleName, definingFunction);
 
     };
 
-
-    $.CC.defineRole = $.defineRole;
-
-
     /**
-     * ReadyNotifier is the component class which notifies the readiness of the component.
+     * Coelement accompanies the element.
      */
-    var ReadyNotifier = subclass(function (pt) {
+    var Coelement = $.cc.subclass(function (pt) {
 
         pt.constructor = function (elem) {
 
             this.elem = elem;
 
-            var classComponentName = this.constructor.classComponentName;
-
-            this.elem.classComponentReady(classComponentName, this.__init());
-
         };
-
-        pt.__init = function () {};
 
     });
 
@@ -120,13 +105,13 @@
     /**
      * Actor is a component class which drives the dom as main actor. A dom is able to have only one actor.
      */
-    var Actor = subclass(ReadyNotifier, function (pt, parent) {
+    $.cc.Actor = $.cc.subclass(Coelement, function (pt, parent) {
 
         pt.constructor = function (elem) {
 
-            elem.data('__actor', this);
-
             parent.constructor.call(this, elem);
+
+            elem.data('__actor', this);
 
         };
 
@@ -136,15 +121,15 @@
     /**
      * Role is a component class. A dom can have multiple roles on it.
      */
-    var Role = subclass(ReadyNotifier, function (pt, parent) {
+    $.cc.Role = $.cc.subclass(Coelement, function (pt, parent) {
 
         pt.constructor = function (elem) {
+
+            parent.constructor.call(this, elem);
 
             var roleName = this.constructor.classComponentName;
 
             elem.data('__role:' + roleName, this);
-
-            parent.constructor.call(this, elem);
 
         };
 
@@ -173,7 +158,5 @@
 
     };
 
-    $.CC.Actor = Actor;
-    $.CC.Role = Role;
 
-}(jQuery, subclass));
+}(jQuery));
