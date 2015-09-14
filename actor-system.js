@@ -18,34 +18,6 @@
     }
 
     /**
-     * @private
-     * @param {Function} Parent The parent class
-     * @param {String} name The class component name
-     * @param {Function} defining
-     * @return {Function} The child class
-     */
-    var extendAndAssign = function (Parent, name, defining) {
-
-        if (defining == null && typeof name === 'function') {
-
-            return extendAndAssign(Parent, null, name);
-
-        }
-
-        var Child = $.cc.subclass(Parent, defining);
-
-        if (name) {
-
-            $.cc.assign(name, Child);
-
-        }
-
-        return Child;
-
-    };
-
-
-    /**
      * @param {String} className
      * @param {Function} DefiningClass
      */
@@ -61,40 +33,18 @@
 
     };
 
-    /**
-     * Defines and registers an actor
-     *
-     * @param {String} actorName
-     * @param {Function} definingFunction
-     */
-    $.cc.defineActor = function (actorName, definingFunction) {
-
-        return extendAndAssign($.cc.Actor, actorName, definingFunction);
-
-    };
 
     /**
-     * Defines and registers an role
-     *
-     * @param {String} roleName
-     * @param {Function} definingFunction
+     * Coelement is the additional function of the dom element. A coelement is bound to the element and works together with it.
      */
-    $.cc.defineRole = function (roleName, definingFunction) {
-
-        return extendAndAssign($.cc.Role, roleName, definingFunction);
-
-    };
-
-    /**
-     * Coelement accompanies the element.
-     */
-    var Coelement = $.cc.subclass(function (pt) {
+    $.cc.Coelement = $.cc.subclass(function (pt) {
 
         pt.constructor = function (elem) {
 
             this.elem = elem;
 
             // embeds coelement in the jquery object
+            // to make it possible to reference coelement from the element.
             this.elem.data('__class_component:' + this.constructor.classComponentName, this);
 
         };
@@ -105,7 +55,7 @@
     /**
      * Actor is a component class which drives the dom as main actor. A dom is able to have only one actor.
      */
-    $.cc.Actor = $.cc.subclass(Coelement, function (pt, parent) {
+    $.cc.Actor = $.cc.subclass($.cc.Coelement, function (pt, parent) {
 
         pt.constructor = function (elem) {
 
@@ -119,23 +69,6 @@
 
 
     /**
-     * Role is a component class. A dom can have multiple roles on it.
-     */
-    $.cc.Role = $.cc.subclass(Coelement, function (pt, parent) {
-
-        pt.constructor = function (elem) {
-
-            parent.constructor.call(this, elem);
-
-            var roleName = this.constructor.classComponentName;
-
-            elem.data('__role:' + roleName, this);
-
-        };
-
-    });
-
-    /**
      * Gets an actor set on the element.
      *
      * @return {Actor}
@@ -146,17 +79,6 @@
 
     };
 
-    /**
-     * Gets an role of the given name set on the element.
-     *
-     * @param {String} roleName The role name
-     * @return {Role}
-     */
-    $.fn.getRole = function (roleName) {
-
-        return this.data('__role:' + roleName);
-
-    };
 
 
 }(jQuery));
