@@ -48,7 +48,6 @@
     /**
      * @param {String} className
      * @param {Function} DefiningClass
-     * @return {Function}
      */
     $.cc.assign = function (className, DefiningClass) {
 
@@ -59,8 +58,6 @@
             new DefiningClass(elem);
 
         });
-
-        return DefiningClass;
 
     };
 
@@ -96,6 +93,9 @@
         pt.constructor = function (elem) {
 
             this.elem = elem;
+
+            // embeds coelement in the jquery object
+            this.elem.data('__class_component:' + this.constructor.classComponentName, this);
 
         };
 
