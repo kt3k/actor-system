@@ -18,15 +18,15 @@
   "author": "Yoshiya Hinosawa",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^2.3.0",
-    "karma": "^0.12.31",
+    "chai": "^3.5.0",
+    "karma": "^1.3.0",
     "karma-chai": "^0.1.0",
-    "karma-chrome-launcher": "^0.1.9",
-    "karma-coverage": "^0.3.1",
-    "karma-coveralls": "^0.1.5",
-    "karma-mocha": "^0.1.10",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "mocha": "^2.2.4",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-coveralls": "^1.1.2",
+    "karma-mocha": "^1.2.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "mocha": "^3.1.2",
     "which": "^1.0.9"
   }
 }
